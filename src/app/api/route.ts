@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       {
         text: {
           text: [
-            `Thank you ${person["given-name"]}`,
+            `Thank you ${person["given-name"]}.`,
             "We have added you to our job applications list.",
             "Someone from HR will get in touch with you soon!",
           ],
