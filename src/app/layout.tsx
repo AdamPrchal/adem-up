@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -100,7 +101,11 @@ export default function RootLayout({
         {children}
         <footer className="footer items-center p-4 bg-neutral text-neutral-content">
           <aside className="items-center grid-flow-col">
-            <img src="/logo.svg" alt="Logo" className="fill-white size-12 p-1" />
+            <img
+              src="/logo.svg"
+              alt="Logo"
+              className="fill-white size-12 p-1"
+            />
             <p>Copyright © 2024 - All right reserved</p>
           </aside>
           <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
@@ -139,6 +144,17 @@ export default function RootLayout({
             </a>
           </nav>
         </footer>
+        <Script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></Script>
+        {
+          // @ts-ignore
+          <df-messenger
+            intent="WELCOME"
+            chat-title="AdEm_Up_Marketing"
+            agent-id="b4dedbab-a4bb-4266-8970-1bd1196b14f3"
+            language-code="en"
+            // @ts-ignore
+          ></df-messenger>
+        }
       </body>
     </html>
   );
