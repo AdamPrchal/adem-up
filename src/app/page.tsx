@@ -94,7 +94,7 @@ export default function Home() {
         <ul className="grid grid-cols-1 xl:grid-cols-3 gap-4 ">
           {services.map((service) => (
             <li
-              className="card w-96 first:bg-primary even:bg-neutral even:text-white first:text-primary-content shadow-xl border border-neutral-500/20"
+              className="card max-w-96 first:bg-primary even:bg-neutral even:text-white first:text-primary-content shadow-xl border border-neutral-500/20"
               key={service.name}
             >
               <div className="card-body">
@@ -118,7 +118,7 @@ export default function Home() {
         <ul className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {pricingPlans.map((service) => (
             <li
-              className="card w-96 last:bg-primary first:text-white xl:odd:translate-y-8 even:bg-neutral even:text-white last:text-primary-content shadow-xl border border-neutral-200/20"
+              className="card max-w-96 last:bg-primary first:text-white xl:odd:translate-y-8 even:bg-neutral even:text-white last:text-primary-content shadow-xl border border-neutral-200/20"
               key={service.name}
             >
               <div className="card-body">
