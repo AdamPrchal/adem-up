@@ -7,10 +7,14 @@ const SCOPES = [
   "https://www.googleapis.com/auth/drive.file",
 ];
 
+const PRIVATE_KEY = process.env.PRIVATE_KEY
+  ? process.env.PRIVATE_KEY.replace(/\\n/g, "\n")
+  : "";
+
 export async function POST(request: Request) {
   const jwt = new JWT({
     email: process.env.CLIENT_EMAIL,
-    key: process.env.PRIVATE_KEY,
+    key: PRIVATE_KEY,
     scopes: SCOPES,
   });
 
