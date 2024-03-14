@@ -21,7 +21,8 @@ export async function POST(request: Request) {
   const data = await request.json();
 
   const person = data.queryResult.parameters;
-  console.log(person);
+  const now = new Date();
+  console.log(now.toISOString(), person);
 
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID as string, jwt);
   await doc.loadInfo(); // loads document properties and worksheets
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
   const newApplication = await sheet.addRow({
     name: `${person["given-name"]} ${person["last-name"]}`,
     email: person["email"],
+    created_at: now.toISOString(),
   });
 
   const responseBody = {
@@ -36,9 +38,7 @@ export async function POST(request: Request) {
       {
         text: {
           text: [
-            `Thank you ${person["given-name"]}.`,
-            "We have added you to our job applications list.",
-            "Someone from HR will get in touch with you soon!",
+            `Thank you ${person["given-name"]}. We have added you to our job applications list. Someone from HR will get in touch with you soon!`,
           ],
         },
       },
