@@ -17,6 +17,7 @@ export async function POST(request: Request) {
   const data = await request.json();
 
   const person = data.queryResult.parameters;
+  console.log(person);
 
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID as string, jwt);
   await doc.loadInfo(); // loads document properties and worksheets
