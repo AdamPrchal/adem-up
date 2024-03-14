@@ -128,7 +128,7 @@ export default function Home() {
             >
               <div className="card-body">
                 <div className="flex gap-2 items-center">
-                  <h2 className="card-title">{service.name}</h2>
+                  <h3 className="card-title">{service.name}</h3>
                   <Icon name={service.icon} />
                 </div>
                 <p>{service.description}</p>
@@ -155,7 +155,7 @@ export default function Home() {
             >
               <div className="card-body">
                 <div className="flex gap-2 items-center">
-                  <h2 className="card-title">{plan.name}</h2>
+                  <h3 className="card-title">{plan.name}</h3>
                   <Icon name={plan.icon} />
                 </div>
                 <p className="mb-8">{plan.description}</p>
@@ -179,7 +179,7 @@ export default function Home() {
               key={question.question}
             >
               <div className="card-body">
-                <h2 className="card-title mb-2">{question.question}</h2>
+                <h3 className="card-title mb-2">{question.question}</h3>
                 <p
                   dangerouslySetInnerHTML={{ __html: question.answer }}
                   className="mb-8"
