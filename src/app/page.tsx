@@ -1,34 +1,35 @@
 import { SectionContainer } from "@/components/SectionContainer";
 import { SectionDescription } from "@/components/SectionDescription";
 import { SectionHeading } from "@/components/SectionHeading";
-import Image from "next/image";
+import Icon from "@/components/Icon";
+import dynamicIconImports from "lucide-react/dynamicIconImports";
 
 const services = [
   {
     name: "SEO",
     description: "Search Engine Optimization for maximum visibility.",
-    icon: "search",
+    icon: "search" as keyof typeof dynamicIconImports,
   },
   {
     name: "PPC Advertising",
     description: "Efficient paid advertising campaigns.",
-    icon: "dollar-sign",
+    icon: "dollar-sign" as keyof typeof dynamicIconImports,
   },
   {
     name: "Social Media Management",
     description: "Building a strong online community.",
-    icon: "users",
+    icon: "users" as keyof typeof dynamicIconImports,
   },
   {
     name: "Content Marketing",
     description:
       "Engaging and persuasive content that resonates with your audience.",
-    icon: "file-text",
+    icon: "file-text" as keyof typeof dynamicIconImports,
   },
   {
     name: "Email Marketing",
     description: "Tailored campaigns for your target groups.",
-    icon: "mail",
+    icon: "mail" as keyof typeof dynamicIconImports,
   },
 ];
 
@@ -38,21 +39,49 @@ const pricingPlans = [
     description:
       "Perfect for small businesses looking to make an initial impact. Includes basic SEO, social media management, and content creation.",
     price: "$500/month",
-    icon: "trending-up",
+    icon: "trending-up" as keyof typeof dynamicIconImports,
   },
   {
     name: "Growth Plan",
     description:
       "Designed for growing businesses seeking to expand their reach. Includes advanced SEO, PPC campaigns, comprehensive social media strategy, and email marketing.",
     price: "$1,500/month",
-    icon: "bar-chart-2",
+    icon: "bar-chart-2" as keyof typeof dynamicIconImports,
   },
   {
     name: "Premium Plan",
     description:
       "Our all-inclusive package for businesses aiming for leadership in their market. Includes all services in the Growth Plan plus premium content creation, video marketing, and analytics reporting.",
     price: "$3,000/month",
-    icon: "award",
+    icon: "award" as keyof typeof dynamicIconImports,
+  },
+];
+
+const faqs = [
+  {
+    question: "What services does AdEm Up Marketing offer?",
+    answer:
+      "We specialize in a comprehensive range of digital marketing services, including Search Engine Optimization (SEO), Pay-Per-Click (PPC) advertising, social media management, content marketing, and email marketing campaigns tailored to meet your business objectives.",
+  },
+  {
+    question: "How do we get started with AdEm Up Marketing?",
+    answer:
+      "Getting started is easy! Simply contact us through our website form or email us directly. We’ll schedule a consultation to discuss your marketing needs, goals, and how we can help your business grow.",
+  },
+  {
+    question: "Can AdEm Up Marketing help with a small budget?",
+    answer:
+      "Yes! We believe every business deserves to grow, regardless of its size or budget. We offer flexible pricing plans tailored to your specific marketing needs and financial constraints. Contact us to discuss how we can work within your budget.",
+  },
+  {
+    question: "How are your services priced?",
+    answer:
+      "Our pricing varies based on the services you require and the scope of your project. We offer customized pricing plans that can include one-time fees for specific projects or monthly packages for ongoing services. For detailed pricing, please contact us so we can understand your needs and provide you with a tailored quote.",
+  },
+  {
+    question: "What are the pricing plans available?",
+    answer:
+      "We offer three main pricing plans tailored to different business needs and budgets: <br/><br/><strong>Starter Plan</strong>: $500/month, perfect for small businesses looking to make an initial impact with basic SEO, social media management, and content creation. <br/><br/><strong>Growth Plan</strong>: $1,500/month, designed for growing businesses seeking to expand their reach with advanced SEO, PPC campaigns, comprehensive social media strategy, and email marketing. <br/><br/><strong>Premium Plan</strong>: $3,000/month, our all-inclusive package for businesses aiming for market leadership, including all services in the Growth Plan plus premium content creation, video marketing, and analytics reporting.",
   },
 ];
 
@@ -98,7 +127,10 @@ export default function Home() {
               key={service.name}
             >
               <div className="card-body">
-                <h2 className="card-title">{service.name}</h2>
+                <div className="flex gap-2 items-center">
+                  <h2 className="card-title">{service.name}</h2>
+                  <Icon name={service.icon} />
+                </div>
                 <p>{service.description}</p>
                 <div className="card-actions justify-end">
                   <button className="btn">Learn More</button>
@@ -116,16 +148,19 @@ export default function Home() {
           Contact us for more details and get a customized quote.
         </SectionDescription>
         <ul className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-          {pricingPlans.map((service) => (
+          {pricingPlans.map((plan) => (
             <li
               className="card max-w-96 last:bg-primary first:text-white xl:odd:translate-y-8 even:bg-neutral even:text-white last:text-primary-content shadow-xl border border-neutral-200/20"
-              key={service.name}
+              key={plan.name}
             >
               <div className="card-body">
-                <h2 className="card-title">{service.name}</h2>
-                <p className="mb-8">{service.description}</p>
+                <div className="flex gap-2 items-center">
+                  <h2 className="card-title">{plan.name}</h2>
+                  <Icon name={plan.icon} />
+                </div>
+                <p className="mb-8">{plan.description}</p>
                 <div className="card-actions justify-end items-center">
-                  <p className="font-black text-2xl">{service.price}</p>
+                  <p className="font-black text-2xl">{plan.price}</p>
                   <button className="btn">Learn More</button>
                 </div>
               </div>
@@ -133,6 +168,28 @@ export default function Home() {
           ))}
         </ul>
       </SectionContainer>
+
+      <SectionContainer className="text-black pb-24">
+        <SectionHeading>FAQ</SectionHeading>
+
+        <ul className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          {faqs.map((question) => (
+            <li
+              className="card max-w-96 bg-neutral text-white shadow-xl border border-neutral-200/20"
+              key={question.question}
+            >
+              <div className="card-body">
+                <h2 className="card-title mb-2">{question.question}</h2>
+                <p
+                  dangerouslySetInnerHTML={{ __html: question.answer }}
+                  className="mb-8"
+                ></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </SectionContainer>
+
       <SectionContainer>
         <SectionHeading>Got Questions? We&apos;re Here for You!</SectionHeading>
         <SectionDescription>
