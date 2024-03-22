@@ -3,6 +3,7 @@ import { SectionDescription } from "@/components/SectionDescription";
 import { SectionHeading } from "@/components/SectionHeading";
 import Icon from "@/components/Icon";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
+import { ConsultationForm } from "@/components/ConsultationForm";
 
 const services = [
   {
@@ -104,7 +105,7 @@ export default function Home() {
           Learn More ↓
         </a>
       </section>
-      <SectionContainer>
+      <SectionContainer id="aboutUs">
         <SectionHeading>Who We Are</SectionHeading>
         <SectionDescription>
           AdEm Up Marketing is an innovative marketing agency specializing in
@@ -114,7 +115,20 @@ export default function Home() {
           presence and strengthen their market position.
         </SectionDescription>
       </SectionContainer>
-      <SectionContainer>
+
+      <SectionContainer
+        id="consultation"
+        className="bg-sky-600 text-black pb-24"
+      >
+        <SectionHeading>Schedule Your Free Consultation</SectionHeading>
+        <SectionDescription className="text-center">
+          Start your journey to marketing success.
+          <br />
+          Select a date and time for your free consultation call.
+        </SectionDescription>
+        <ConsultationForm />
+      </SectionContainer>
+      <SectionContainer id="services">
         <SectionHeading>Our Services</SectionHeading>
         <SectionDescription>
           We offer a comprehensive range of digital marketing services,
@@ -140,7 +154,7 @@ export default function Home() {
           ))}
         </ul>
       </SectionContainer>
-      <SectionContainer className="bg-sky-600 text-black pb-24">
+      <SectionContainer id="pricing" className="bg-sky-600 text-black pb-24">
         <SectionHeading>Invest in Your Success</SectionHeading>
         <SectionDescription>
           We understand that each client has unique needs and budgets.
@@ -169,7 +183,7 @@ export default function Home() {
         </ul>
       </SectionContainer>
 
-      <SectionContainer className="text-black pb-24">
+      <SectionContainer id="faq" className="text-black pb-24">
         <SectionHeading>FAQ</SectionHeading>
 
         <ul className="grid grid-cols-1 xl:grid-cols-3 gap-8">
@@ -190,7 +204,7 @@ export default function Home() {
         </ul>
       </SectionContainer>
 
-      <SectionContainer>
+      <SectionContainer id="contact">
         <SectionHeading>Got Questions? We&apos;re Here for You!</SectionHeading>
         <SectionDescription>
           Whether you have a query about our services, need a consultation, or

@@ -1,33 +1,12 @@
-import { JWT } from "google-auth-library";
-
-import { GoogleSpreadsheet } from "google-spreadsheet";
-
-const SCOPES = [
-  "https://www.googleapis.com/auth/spreadsheets",
-  "https://www.googleapis.com/auth/drive.file",
-];
-
-const PRIVATE_KEY = process.env.PRIVATE_KEY
-  ? process.env.PRIVATE_KEY.replace(/\\n/g, "\n")
-  : "";
+import { addToSpreadsheet } from "@/lib/gsheets";
 
 export async function POST(request: Request) {
-  const jwt = new JWT({
-    email: process.env.CLIENT_EMAIL,
-    key: PRIVATE_KEY,
-    scopes: SCOPES,
-  });
-
   const data = await request.json();
 
   const person = data.queryResult.parameters;
   const now = new Date();
-  console.log(now.toISOString(), person);
 
-  const doc = new GoogleSpreadsheet(process.env.SHEET_ID as string, jwt);
-  await doc.loadInfo(); // loads document properties and worksheets
-  const sheet = doc.sheetsByIndex[0]; // or use `doc.sheetsById[id]` or `doc.sheetsByTitle[title]`
-  const newApplication = await sheet.addRow({
+  const newApplication = await addToSpreadsheet("applicants", {
     name: `${person["given-name"]} ${person["last-name"]}`,
     email: person["email"],
     created_at: now.toISOString(),
