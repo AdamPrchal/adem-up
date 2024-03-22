@@ -137,7 +137,7 @@ export default function Home() {
         <ul className="grid grid-cols-1 xl:grid-cols-3 gap-4 ">
           {services.map((service) => (
             <li
-              className="card max-w-96 first:bg-primary even:bg-neutral even:text-white first:text-primary-content shadow-xl border border-neutral-500/20"
+              className="card max-w-96 text-white first:bg-primary even:bg-neutral even:text-white first:text-primary-content shadow-xl border border-neutral-500/20"
               key={service.name}
             >
               <div className="card-body">
@@ -204,7 +204,7 @@ export default function Home() {
         </ul>
       </SectionContainer>
 
-      <SectionContainer id="contact">
+      <SectionContainer id="contact" className="text-white">
         <SectionHeading>Got Questions? We&apos;re Here for You!</SectionHeading>
         <SectionDescription>
           Whether you have a query about our services, need a consultation, or
